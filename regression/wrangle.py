@@ -3,9 +3,8 @@ import numpy as np
 
 import env
 
-def get_db_url(user, password, host, database_name):
-    url = f'mysql+pymysql://{user}:{password}@{host}/{database_name}'
-    return url
+def get_db_url(database_name):
+    return f'mysql+pymysql://{env.user}:{env.password}@{env.host}/{database_name}'
 
 def get_data_from_mysql():
     query = '''
@@ -14,7 +13,7 @@ def get_data_from_mysql():
     ORDER BY total_charges DESC;
     '''
 
-    df = pd.read_sql(query, url)
+    df = pd.read_sql(query, get_db_url('telco_churn'))
     return df
 
 def clean_data(df):

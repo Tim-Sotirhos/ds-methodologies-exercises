@@ -42,6 +42,18 @@ months_to_year(df).head()
 
 # Write a function, plot_categorical_and_continous_vars(categorical_var, continuous_var, df), that outputs 3 different plots for plotting a categorical variable with a continuous variable, e.g. tenure_years with total_charges. For ideas on effective ways to visualize categorical with continuous:
 
-def plot_categorical_and_continous_vars(categorical_var, continuous_var, df):
-    
-plot
+def plot_categorical_and_continuous_vars(df):
+    plt.figure(figsize=(16,8))
+    plt.subplot(1,3,1)
+    plt.bar(df.tenure_years,df.total_charges)
+    plt.xlabel('Tenure in years')
+    plt.ylabel('Total charges in dollars')
+    plt.subplot(1,3,2)
+    sns.stripplot(df.tenure_years,df.total_charges)
+    plt.subplot(1,3,3)
+    #plt.scatter(df.tenure_years,df.total_charges)
+    plt.pie(df.groupby('tenure_years')['total_charges'].sum(),labels=list(df.tenure_years.unique()),autopct='%1.1f%%',shadow=True)
+    plt.title(" Percent of total charges by tenure")
+    plt.show()
+
+plot_categorical_and_continuous_vars(df)

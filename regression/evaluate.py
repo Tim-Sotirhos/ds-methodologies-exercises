@@ -112,9 +112,8 @@ def better_than_baseline(data_frame, data_frame_baseline):
     SSE_bl = mean_squared_error(tips_baseline.tip, tips_baseline.yhat) * len(tips_baseline)
     MSE = mean_squared_error(tips.tip, tips.yhat)
     MSE_bl = mean_squared_error(tips_baseline.tip, tips_baseline.yhat)
-    if SSE < SSE_bl:
-        if MSE < MSE_bl:
-            return True
+    if SSE < SSE_bl and MSE < MSE_bl:
+        return True
 
 better_than_baseline(tips, tips_baseline)
 

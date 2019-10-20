@@ -14,21 +14,15 @@ df = wrangle.wrangle_telco()
 df.info()
 df.describe()
 df.head()
-df = df.set_index('customer_id')
-df
+df.drop(columns = ['customer_id'], inplace = True)
+df.head()
 
 # 1.) split_my_data(X, y, train_pct)
 
-def split_my_data(X, y, train_pct, random_state):
-    x = df.drop(columns = 'total_charges')
-    y = df.total_charges
-    x_train, x_test, y_train, y_test = train_test_split(x,y, train_size = .80, random_state = random_state)
-    return x_train, x_test, y_train, y_test
+def split_my_data(data, train_ratio = .80, seed = 123):
+    return train_test_split(data, train_size = train_ratio, random_state = seed)
 
-def split_my_data_whole(df, train_pct):
-    train, test = train_test_split(df, train_size= .80, random_state= 123)
-    return train, test
-
+split_my_data(df, .80, 123)
 # 2.) standard_scaler()
 
 def standard_scaler(train, test):

@@ -57,7 +57,7 @@ plot_residuals(x,y,tips)
 # returns the sum of squared errors (SSE), 
 # explained sum of squares (ESS), 
 # total sum of squares (TSS), 
-# mean squared error (MSE) 
+# mean squared error (MSE), 
 # and root mean squared error (RMSE).
 
 def regression_errors(y, yhat, data_frame):

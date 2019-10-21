@@ -10,7 +10,6 @@ from sklearn.metrics import mean_squared_error, r2_score, explained_variance_sco
 from sklearn.feature_selection import f_regression 
 from math import sqrt
 import matplotlib.pyplot as plt
-%matplotlib inline
 from pydataset import data
 
 # import data and explore

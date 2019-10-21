@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-%matplotlib inline
 import warnings
 warnings.filterwarnings(action='ignore')
 from sklearn.feature_selection import SelectKBest, f_regression
@@ -31,7 +30,7 @@ df.head()
 sns.pairplot(data = df)
 
 # split data
-train, test = split_scale.split_my_data(data = df, train_pct = .80, random_state = 123)
+train, test = split_scale.split_my_data(data = df, train_ratio = .80, seed = 123)
 
 # Scale
 
@@ -76,7 +75,7 @@ def select_kbest_freg_scaled(X_train, y_train, k):
     f_selector = SelectKBest(f_regression, k).fit(X_train, y_train).get_support()
     f_feature = X_train.loc[:,f_selector].columns.tolist()
     return f_feature
-
+select_kbest_freg_scaled(X_train, y_train, 2)
 # select_kbest_freg_scaled(X_train_scaled, y_train_scaled, 2)
 
 def select_kbest_freg(X, y, k):

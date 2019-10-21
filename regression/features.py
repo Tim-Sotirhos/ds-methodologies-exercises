@@ -136,7 +136,13 @@ def lasso_cv_coef(X_train, y_train):
     plot = sns.barplot(x = x_train.columns, y = reg.coef_)
     return coef, plot
 
-lasso_cv_coef(x_train, y_train)
+# lasso_cv_coef(x_train, y_train)
+
+# 5. Write 3 functions, 
+# the first computes the number of optimum features (n) using rfe, 
+# the second takes n as input and returns the top n features,
+#  and the third takes the list of the top n features as input and returns a new X_train and X_test dataframe with those top features , 
+# recursive_feature_elimination() that computes the optimum number of features (n) and returns the top n features.
 
 def optimal_number_of_features(X, y):
     '''discover the optimal number of features, n, using our scaled x and y dataframes, recursive feature
@@ -144,8 +150,8 @@ def optimal_number_of_features(X, y):
     We will use the output of this function (the number of features) as input to the next function
     optimal_features, which will then run recursive feature elimination to find the n best features
     '''
-    features_range = range(1, len(X.columns)+1)
-    # len(features_range)
+    number_of_attributes = X_train.shape[1]
+    number_of_features_list=np.arange(1,number_of_attributes)    # len(features_range)
 
     # set "high score" to be the lowest possible score
     high_score = 0
@@ -153,20 +159,19 @@ def optimal_number_of_features(X, y):
     # variables to store the feature list and number of features
     number_of_features = 0
     score_list = []
-
-    # write the problem without a loop, but instead with all features available,
-    # so feature count = len(X_train_scaled.columns)
-    for n in features_range:
+    
+    for n in range(len(number_of_features_list)):
         model = LinearRegression()
-        train_rfe = RFE(model, n).fit_transform(X, y)
-        model.fit(train_rfe, y)
-        score = model.score(train_rfe, y)
+        rfe = RFE(model,number_of_features_list[n])
+        X_train_rfe = rfe.fit_transform(X_train,y_train)
+        X_test_rfe = rfe.transform(X_test)
+        model.fit(X_train_rfe,y_train)
+        score = model.score(X_test_rfe,y_test)
         score_list.append(score)
-        if(score > high_score):
+        if(score>high_score):
             high_score = score
-            number_of_features = n
-
-    return number_of_features, score
+            number_of_features = number_of_features_list[n]
+    return number_of_features
 
 # optimal_n_features(x_train, y_train)
 
@@ -192,3 +197,18 @@ def optimal_features(X_train, X_test, y_train, number_of_features):
     X_test_rfe = pd.DataFrame(test_rfe, columns=selected_features_rfe)
     
     return selected_features_rfe, X_train_rfe, X_test_rfe
+
+def recursive_feature_elimination(X_train, y_train, X_test, y_test):
+    '''
+    recursive_feature_elimination(X_train, y_train, X_test, y_test)
+    RETURNS X_train_optimal, X_test_optimal
+    Combines optimal_number_of_features, optimal_features, and 
+    create_optimal_dataframe into one single function. Accepts X and y train and 
+    test dataframes, returns optimal X train and test dataframes.
+    '''
+
+    number_of_features = optimal_number_of_features(X_train, y_train, X_test, y_test)
+    selected_features_rfe = optimal_features(X_train, y_train, number_of_features)
+    X_train_optimal, X_test_optimal = create_optimal_dataframe(X_train, X_test, selected_features_rfe)
+
+    return X_train_optimal, X_test_optimal

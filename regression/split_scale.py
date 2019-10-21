@@ -20,9 +20,9 @@ df.head()
 # 1.) split_my_data(X, y, train_pct)
 
 def split_my_data(data, train_ratio = .80, seed = 123):
-    return train_test_split(data, train_size = train_ratio, random_state = seed)
+    train, test = train_test_split(data, train_size = train_ratio, random_state = seed)
+    return train, test
 
-split_my_data(df, .80, 123)
 # 2.) standard_scaler()
 
 def standard_scaler(train, test):

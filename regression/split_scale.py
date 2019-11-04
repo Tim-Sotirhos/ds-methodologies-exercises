@@ -17,12 +17,15 @@ df.head()
 df.drop(columns = ['customer_id'], inplace = True)
 df.head()
 
-# 1.) split_my_data(X, y, train_pct)
+# 1.) split_my_data(data, train_pct, seed)
 
 def split_my_data(data, train_ratio = .80, seed = 123):
     train, test = train_test_split(data, train_size = train_ratio, random_state = seed)
+    train = pd.DataFrame(train)
+    test = pd.DataFrame(test)
     return train, test
-
+    
+split_my_data(df, .80, 123)
 # 2.) standard_scaler()
 
 def standard_scaler(train, test):

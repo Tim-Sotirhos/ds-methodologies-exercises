@@ -1,6 +1,8 @@
 import acquire
 import prepare
 
+
+
 def wrangle_zillow_data():
     df = acquire.acquire_zillow()
     df = prepare.zillow_single_unit(df)
@@ -10,5 +12,3 @@ def wrangle_zillow_data():
     df = prepare.handle_missing_values(df)
     df.dropna(inplace = True)
     return df
-
- #df = wrangle_zillow_data()   

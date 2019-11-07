@@ -27,7 +27,8 @@ You will be using common Data Science package libraries throughout
 
 `logerror_zillow.ipynb` pipeline:
 
-- Acquisition
+_**Acquisition**_
+- Acquire from SQL the zillow database
 - Preperation
 - Exploration
 - Modeling

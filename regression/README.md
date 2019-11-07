@@ -19,7 +19,7 @@ Instructions on setting up the Zillow project and necessary steps to successfull
 - Install Anaconda
 - Use Jupyter Notebook
 
-You must use Python version 3.7 or later and if you do not have PIP installed, you can download and install it from this page: [open](https://pypi.org/project/pip/)
+You must use Python version 3.7 or later and if you do not have PIP installed, you can download and install it from this page: [open](https://pypi.org/project/pip/).
 
 You will be using common Data Science package libraries throughout 
 
@@ -29,22 +29,36 @@ You will be using common Data Science package libraries throughout
 
 _**Acquisition**_
 - Acquire from SQL the zillow database
-- Preperation
-- Exploration
-- Modeling
-- Evaluation
+_**Preperation**_
+- Handle Nulls, outliers, drop variables, avoid overcomplications
+_**Exploration**_
+- Vizualize distributions, clustering for early discoveries
+_**Modeling**_
+- Create multiple models with fit/predict with train data
+_**Evaluation**_
+- Analyize evaluation metrics and run test data
 
-To reporduce the project please follow along with the logerror_zillow clusterting project [open](https://github.com/P-F-M/logerror_zillow) and set Random States equal to 123.
+To reporduce this project please follow along with the logerror_zillow clusterting project notebook [open](https://github.com/P-F-M/logerror_zillow) and set Random States equal to 123.
 
-Replace the content below with your project's env.py file:
+* Important - Replace the content below within your project's env.py file:
 (host, user, password) 
 
 ## Project Planning
 
-Replace the content below with your project's:
+Goals: 
+1. Predict the log error
+2. Discover highlights from findings, vizualizations, and real estate domain
+3. Lessons learned within data science, Python, SQL, etc.
 
-env.py file containg(host, user, password) 
-Name
+Zilow data:
+
+* Include properties with a transaction in 2017.
+* Include only the last transaction for each properity.
+* Include Zestimate error and date of transaction.
+* Include properties that include a latitude and longitude value.
+* Remove all properties that are not single family residencies properties.
+
+
 Description
 Installation instructions
 Usage instructions

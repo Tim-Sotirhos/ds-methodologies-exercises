@@ -17,6 +17,7 @@ Download to your project directory, add `README.md`, and commit:
 curl -LO http://git.io/Xy0Chg
 git add README.md
 git commit -m "Use README Boilerplate"
+```
 
 ## Usage
 

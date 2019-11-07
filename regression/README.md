@@ -1,40 +1,55 @@
-# README Boilerplate
+# README logerror_zillow Clustering Project
 
-A template of README best practices to make your README simple to understand and easy to use. 
+Goals Overview: Identify any features that are driving the difference in Zestimate and sales price which is creating a “log error” as well as to construct a model to predict the targeted “log error.”
 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
-- [Support](#support)
+- [Organization](#organization)
+- [Planning](#planning)
 - [Contributing](#contributing)
 
 ## Installation
 
-Download to your project directory, add `README.md`, and commit:
+Instructions on setting up the Zillow project and necessary steps to successfully run on any laptop. 
 
-```sh
-curl -LO http://git.io/Xy0Chg
-git add README.md
-git commit -m "Use README Boilerplate"
-```
+- Create a new repository on GitHub
+- Install VS Code
+- Install Sequel Pro
+- Install Anaconda
+- Use Jupyter Notebook
 
-## Usage
+You must use Python version 3.7 or later and if you do not have PIP installed, you can download and install it from this page: [open](https://pypi.org/project/pip/)
 
-Replace the contents of `README.md` with your project's:
+You will be using common Data Science package libraries throughout 
 
-- Name
-- Description
-- Installation instructions
-- Usage instructions
-- Support instructions
-- Contributing instructions
+## Project Organization
 
-Feel free to remove any sections that aren't applicable to your project.
+`logerror_zillow.ipynb` pipeline:
 
-## Support
+- Acquisition
+- Preperation
+- Exploration
+- Modeling
+- Evaluation
 
-Please [open an issue](https://github.com/fraction/readme-boilerplate/issues/new) for support.
+To reporduce the project please follow along with the logerror_zillow clusterting project [open](https://github.com/P-F-M/logerror_zillow) and set Random States equal to 123.
+
+Replace the content below with your project's env.py file:
+(host, user, password) 
+
+## Project Planning
+
+Replace the content below with your project's:
+
+env.py file containg(host, user, password) 
+Name
+Description
+Installation instructions
+Usage instructions
+Support instructions
+Contributing instructions
+
 
 ## Contributing
 

@@ -47,7 +47,7 @@ To reporduce this project please follow along with the logerror_zillow clusterti
 
 Replace the following content within your project's env.py file: (host, user, password) 
 
-## Project Planning
+## Planning
 
 Goals: 
 1. Predict the log error

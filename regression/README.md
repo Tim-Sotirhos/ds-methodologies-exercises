@@ -49,12 +49,12 @@ Replace the following content within your project's env.py file: (host, user, pa
 
 ## Planning
 
-Goals: 
+###Goals: 
 1. Predict the log error
 2. Discover highlights from findings, vizualizations, and real estate domain
 3. Lessons learned within data science, Python, SQL, etc.
 
-Zilow data:
+###Zilow data:
 
 * Include properties with a transaction in 2017.
 * Include only the last transaction for each properity.
@@ -106,4 +106,4 @@ Contributing instructions
 
 **land_value_square_footage:** created variable of the value per square foot from the land_value divided by the lot_square_feet
 
-**`* Note:`** all the values of every variable is a Float64 data type
+**`* Note:`** every variable has a data type of: Float64

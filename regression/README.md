@@ -49,26 +49,19 @@ Replace the following content within your project's env.py file: (host, user, pa
 
 ## Planning
 
-###Goals: 
+### Goals:
+
 1. Predict the log error
 2. Discover highlights from findings, vizualizations, and real estate domain
 3. Lessons learned within data science, Python, SQL, etc.
 
-###Zilow data:
+### Zilow data:
 
 * Include properties with a transaction in 2017.
 * Include only the last transaction for each properity.
 * Include Zestimate error and date of transaction.
 * Include properties that include a latitude and longitude value.
 * Remove all properties that are not single family residencies properties.
-
-
-Description
-Installation instructions
-Usage instructions
-Support instructions
-Contributing instructions
-
 
 ## Dictionary
 

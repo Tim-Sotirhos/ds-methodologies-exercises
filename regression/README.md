@@ -1,6 +1,6 @@
 # README: logerror_zillow Clustering Project
 
-Goals Overview:* Identify any features that are driving the difference in Zestimate and sales price which is creating a “log error” as well as to construct a model to predict the targeted “log error.”
+***Goals Overview:*** Identify any features that are driving the difference in Zestimate and sales price which is creating a “log error” as well as to construct a model to predict the targeted “log error.”
 
 ## Table of Contents
 

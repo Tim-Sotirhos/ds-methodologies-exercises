@@ -3,6 +3,8 @@
 import json
 import requests
 import pandas as pd
+from os import path
+
 
 # 1. Create a dataframe named items that has all of the data for items.
 
@@ -131,8 +133,118 @@ data['payload']['sales'][:]
 
 sales = pd.DataFrame(data['payload']['sales'])
 
-
-
 sales.head()
 
 sales.shape
+
+## Solution set of functions:
+
+BASE_URL = 'https://python.zach.lol'
+API_BASE = BASE_URL + '/api/v1'
+
+# Get store data
+
+def get_store_data_from_api():
+    url = API_BASE + '/stores'
+    response = requests.get(url)
+    data = response.json()
+    return pd.DataFrame(data['payload']['stores'])
+
+get_store_data_from_api()
+
+# Get items data
+
+def get_item_data_from_api():
+    url = API_BASE + '/items'
+    response = requests.get(url)
+    data = response.json()
+
+    stores = data['payload']['items']
+
+    while data['payload']['next_page'] is not None:
+        print('Fetching page {} of {}'.format(data['payload']['page'] + 1, data['payload']['max_page']))
+        url = BASE_URL + data['payload']['next_page']
+        response = requests.get(url)
+        data = response.json()
+        stores += data['payload']['items']
+
+    return pd.DataFrame(stores)
+
+get_item_data_from_api()
+
+# Get sales data
+
+def get_sale_data_from_api():
+    url = API_BASE + '/sales'
+    response = requests.get(url)
+    data = response.json()
+
+    stores = data['payload']['sales']
+
+    while data['payload']['next_page'] is not None:
+        print('Fetching page {} of {}'.format(data['payload']['page'] + 1, data['payload']['max_page']))
+        url = BASE_URL + data['payload']['next_page']
+        response = requests.get(url)
+        data = response.json()
+        stores += data['payload']['sales']
+
+    return pd.DataFrame(stores)
+
+get_sale_data_from_api()
+
+
+
+# 4. Save the data in your files to local csv files so that it will be faster to access in the future.
+
+def get_store_data(use_cache=True):
+    if use_cache and path.exists('stores.csv'):
+        return pd.read_csv('stores.csv')
+    df = get_store_data_from_api()
+    df.to_csv('stores.csv', index=False)
+    return df
+
+get_store_data()
+
+def get_item_data(use_cache=True):
+    if use_cache and path.exists('items.csv'):
+        return pd.read_csv('items.csv')
+    df = get_item_data_from_api()
+    df.to_csv('items.csv', index=False)
+    return df
+
+get_item_data()
+
+def get_sale_data(use_cache=True):
+    if use_cache and path.exists('sales.csv'):
+        return pd.read_csv('sales.csv')
+    df = get_sale_data_from_api()
+    df.to_csv('sales.csv', index=False)
+    return df
+
+get_sale_data()
+
+# 5. Combine the data from your three separate dataframes into one large dataframe.
+
+def get_all_data():
+    sales = get_sale_data()
+    items = get_item_data()
+    stores = get_store_data()
+
+    sales = sales.rename(columns={'item': 'item_id', 'store': 'store_id'})
+
+    return sales.merge(items, on='item_id').merge(stores, on='store_id')
+
+get_all_data()
+
+# 6. Acquire the Open Power Systems Data for Germany, which has been rapidly expanding its renewable energy production in recent years. The data set includes country-wide totals of electricity consumption, wind power production, and solar power production for 2006-2017. You can get the data here: https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv
+
+def get_opsd_data(use_cache=True):
+    if use_cache and path.exists('opsd.csv'):
+        return pd.read_csv('opsd.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv')
+    df.to_csv('opsd.csv', index=False)
+    return df
+
+get_opsd_data()
+
+# 7. Make sure all the work that you have done above is reproducible. That is, you should put the code above into separate functions in the acquire.py file and be able to re-run the functions and get the same data.

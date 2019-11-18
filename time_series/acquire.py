@@ -150,7 +150,6 @@ def get_store_data_from_api():
     data = response.json()
     return pd.DataFrame(data['payload']['stores'])
 
-get_store_data_from_api()
 
 # Get items data
 
@@ -170,7 +169,6 @@ def get_item_data_from_api():
 
     return pd.DataFrame(stores)
 
-get_item_data_from_api()
 
 # Get sales data
 
@@ -190,8 +188,6 @@ def get_sale_data_from_api():
 
     return pd.DataFrame(stores)
 
-get_sale_data_from_api()
-
 
 
 # 4. Save the data in your files to local csv files so that it will be faster to access in the future.
@@ -203,7 +199,6 @@ def get_store_data(use_cache=True):
     df.to_csv('stores.csv', index=False)
     return df
 
-get_store_data()
 
 def get_item_data(use_cache=True):
     if use_cache and path.exists('items.csv'):
@@ -212,7 +207,6 @@ def get_item_data(use_cache=True):
     df.to_csv('items.csv', index=False)
     return df
 
-get_item_data()
 
 def get_sale_data(use_cache=True):
     if use_cache and path.exists('sales.csv'):
@@ -221,7 +215,6 @@ def get_sale_data(use_cache=True):
     df.to_csv('sales.csv', index=False)
     return df
 
-get_sale_data()
 
 # 5. Combine the data from your three separate dataframes into one large dataframe.
 
@@ -234,7 +227,15 @@ def get_all_data():
 
     return sales.merge(items, on='item_id').merge(stores, on='store_id')
 
-get_all_data()
+def get_all_the_data():
+    sales = pd.read_csv('sales.csv')
+    items = pd.read_csv('items.csv')
+    stores = pd.read_csv('stores.csv')
+
+    sales = sales.rename(columns={'item': 'item_id', 'store': 'store_id'})
+
+    return sales.merge(items, on='item_id').merge(stores, on='store_id')
+
 
 # 6. Acquire the Open Power Systems Data for Germany, which has been rapidly expanding its renewable energy production in recent years. The data set includes country-wide totals of electricity consumption, wind power production, and solar power production for 2006-2017. You can get the data here: https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv
 
@@ -245,6 +246,5 @@ def get_opsd_data(use_cache=True):
     df.to_csv('opsd.csv', index=False)
     return df
 
-get_opsd_data()
 
 # 7. Make sure all the work that you have done above is reproducible. That is, you should put the code above into separate functions in the acquire.py file and be able to re-run the functions and get the same data.

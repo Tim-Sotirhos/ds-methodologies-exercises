@@ -112,6 +112,7 @@ def make_new_request():
 
     return df
 
+
 # Alternative solution for acquire Codeup_blog
 '''
 def get_blog_posts():

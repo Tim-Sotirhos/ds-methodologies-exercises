@@ -10,6 +10,8 @@ from pyspark.sql.functions import (
     when,
     max,
     lit,
+    trim,
+    lower,
 )
 
 

@@ -48,6 +48,7 @@ def add_features(df: pyspark.sql.DataFrame) -> pyspark.sql.DataFrame:
             format_string("%03d", col("council_district").cast("int")),
         )
         .withColumn("zipcode", regexp_extract("request_address", r"\d+$", 0))
+        .withColumn('request_address', trim(lower(case.request_address)))
         .withColumn("case_age", datediff(lit(max_date), "case_opened_date"))
         .withColumn("days_to_closed", datediff("case_closed_date", "case_opened_date"))
         .withColumn(

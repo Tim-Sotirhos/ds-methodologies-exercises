@@ -4,6 +4,33 @@ from scipy import stats
 import itertools as it
 import pandas as pd
 
+'''
+Distributions Warmup¶
+It's another day at the office at Big Research Co ™. You look up from your laptop and see a woman in a lab coat standing in front of your desk.
+
+"I need some help" she says. "We lost some subjects from the trial."
+
+She notices a curious look on your face. "Not like that, they just ran away. We didn't lock the doors soon enough."
+
+"Anyway, there's probably like a 70%, no maybe 80%, no, let's say 90% chance that a given subject will stick around, and I need to run the study again with 10, or 20 subjects. We need to gather enough data on them to justify the cost, so I need you to figure out what are the probabilities are that at least half of them stick around, only 1 person leaves, and that all the subjects stay."
+
+She sees you start to form another question and cuts you off.
+
+"Don't ask. You really don't want to know."
+
+What probability distribution would you use to model the scenario outlined above?
+Calculate all the requested probabilities.
+
+Use all the possible combinations of subject count and chance that a subject will stay in the study. For example, at first calculate the chance that at least half of the subjects stay in the study if there is a 70% that each subject sticks around, and there are 10 subjects, then the probability that only one person leaves, then the probability that all the subjects stay.
+
+Bonus: visualize the requested probabilities.
+
+Hints
+Use scipy.stats for this.
+Each distribution has a cumulative density function that tells you the likelihood that a value falls at or below a given point.
+Consider storing the results of your calculations in a data frame.
+A fancy list comprehension or the itertools module can help you find all the possible combinations.
+'''
 
 
 np.random.seed(123)
